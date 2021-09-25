@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A simple survey app",
   "main": "server/app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "vue-cli-service build client/main.js && node server/app.js"
   },
