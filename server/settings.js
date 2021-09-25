@@ -1,4 +1,5 @@
 module.exports = {
-    PORT: process.env.PORT | 8080,
-    staticFiles: 'static'
+    PORT: process.env.PORT || 8080,
+    staticFiles: 'static',
+    DB: process.env.DATABASE_URL
 }
