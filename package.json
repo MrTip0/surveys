@@ -1,0 +1,21 @@
+{
+  "name": "surveys",
+  "version": "0.1.0",
+  "description": "A simple survey app",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "vue-cli-service build client/main.js && node server/app.js"
+  },
+  "author": "Nicolò Luigi Allegris",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.18.0",
+    "express": "^4.17.1",
+    "vue": "^3.2.18"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/compiler-sfc": "^3.2.18"
+  }
+}
