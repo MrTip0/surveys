@@ -1,20 +1,23 @@
 <template>
-  <h1>{{msg}}</h1>
+  <send-survey />
+  <get-survey />
 </template>
 
 <script>
+import SendSurvey from './components/SendSurvey.vue'
+import GetSurvey from './components/GetSurvey.vue'
+
 export default {
   name: 'App',
-  data(){
-    return{
-      msg: "You did it"
-    }
+  components: {
+    SendSurvey,
+    GetSurvey
   }
 }
 </script>
 
-<style scoped>
-h1 {
+<style>
+body {
   font-family: 'Courier New', Courier, monospace;
 }
 </style>
