@@ -7,7 +7,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "vue-cli-service build client/main.js && node server/app.js"
+    "start": "npm i && vue-cli-service build client/main.js && node server/app.js"
   },
   "author": "Nicolò Luigi Allegris",
   "license": "MIT",
