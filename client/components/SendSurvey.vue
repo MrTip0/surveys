@@ -1,9 +1,10 @@
 <template>
+    <h1>Open a survey</h1>
     <form @submit.prevent="send()">
-        <textarea v-model="question" cols="30" rows="10"></textarea>
+        <input type="text" v-model="question" class="text">
         <input v-if="question != ''" type="submit" value="Send">
     </form>
-    <div v-if="gotResponse">
+    <div v-if="gotResponse" class="response">
         <h1>Registered</h1>
         <p>{{code}}</p>
     </div>
@@ -34,6 +35,40 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+input {
+    width: 50vw;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+}
+input:hover {
+    transform: scale(1.2);
+}
+.response {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+}
+h1 {
+    width: 100%;
+    word-break: break-all;
+}
+p {
+    width: 100%;
+    word-break: break-all;
+}
+.text {
+    border: 1px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+}
 </style>

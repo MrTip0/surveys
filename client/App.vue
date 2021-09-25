@@ -1,5 +1,5 @@
 <template>
-  <send-survey />
+  <send-survey class="marginThis"/>
   <get-survey />
 </template>
 
@@ -19,5 +19,12 @@ export default {
 <style>
 body {
   font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
+.marginThis {
+  margin-bottom: 30px;
 }
 </style>

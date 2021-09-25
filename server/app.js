@@ -55,8 +55,6 @@ app.get('/vote', (req, res) => {
         .catch(()=> res.send('error'))
 })
 
-app.post('createSurvey')
-
 app.listen(PORT, ()=> {
     console.log(`Listening on http://localhost:${PORT}`)
 })
