@@ -15,7 +15,10 @@ const PORT = settings.PORT
 
 var db = pgp({
     connectionString: settings.DB,
-    max: 20
+    max: 20,
+    ssl: {
+        rejectUnauthorized: false
+    }
 })
 let n = 0
 
