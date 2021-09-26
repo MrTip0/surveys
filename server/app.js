@@ -37,9 +37,12 @@ db.none(initialize)
     })
 
 app.post('/add-survey', (req, res)=> {
-    db.none(`INSERT INTO surveys VALUES ('${req.body.question}', 0, 0, '${n}');`)
-    n += 1
-    res.send((n - 1).toString())
+    db.none(`INSERT INTO surveys VALUES ('${req.body.question}', 0, 0, ${n});`)
+        .then(()=> {
+            n += 1
+            res.send((n - 1).toString())
+        })
+        .catch(error => console.error(error))
 })
 
 app.get('/get-survey', (req, res) => {
