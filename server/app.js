@@ -37,7 +37,7 @@ db.none(initialize)
     })
 
 app.post('/add-survey', (req, res)=> {
-    db.none(`INSERT INTO surveys VALUES ('${req.body.question}', 0, 0, ${n});`)
+    db.none(`INSERT INTO surveys VALUES ('${req.body.question.replace(/'/g, '\"')}', 0, 0, ${n});`)
         .then(()=> {
             n += 1
             res.send((n - 1).toString())
@@ -46,10 +46,14 @@ app.post('/add-survey', (req, res)=> {
 })
 
 app.get('/get-survey', (req, res) => {
-    db.any(`SELECT * FROM surveys WHERE id = ${req.query.id};`)
-    .then(value => {
-        res.send(json3.stringify(value[0]))
-    })
+    if (isNaN(req.query.id)) {
+        res.send('error')
+    } else {
+        db.any(`SELECT * FROM surveys WHERE id = ${req.query.id};`)
+            .then(value => {
+                res.send(json3.stringify(value[0]))
+            })
+    }
 })
 
 app.get('/vote', (req, res) => {
