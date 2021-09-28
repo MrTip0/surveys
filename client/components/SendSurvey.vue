@@ -24,7 +24,7 @@ export default {
         send(){
             let xhttp = new XMLHttpRequest()
             xhttp.onload = ()=> {
-                this.code = "The code is: " + xhttp.response
+                this.code = "The url is: https://tipettino-survey-app.herokuapp.com/survey/" + xhttp.response
                 this.gotResponse = true
             }
             xhttp.open('POST', '/add-survey', true)

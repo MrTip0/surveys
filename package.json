@@ -1,6 +1,6 @@
 {
   "name": "surveys",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A simple survey app",
   "main": "server/app.js",
   "engines": {
@@ -17,7 +17,8 @@
     "express": "^4.17.1",
     "json3": "^3.3.3",
     "pg-promise": "^10.11.0",
-    "vue": "^3.2.18"
+    "vue": "^3.2.18",
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",

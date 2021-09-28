@@ -1,18 +1,10 @@
 <template>
-  <send-survey class="marginThis"/>
-  <get-survey />
+  <router-view></router-view>
 </template>
 
 <script>
-import SendSurvey from './components/SendSurvey.vue'
-import GetSurvey from './components/GetSurvey.vue'
-
 export default {
-  name: 'App',
-  components: {
-    SendSurvey,
-    GetSurvey
-  }
+  name: "App"
 }
 </script>
 
@@ -23,8 +15,5 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: white;
-}
-.marginThis {
-  margin-bottom: 30px;
 }
 </style>

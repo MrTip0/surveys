@@ -16,9 +16,7 @@ const PORT = settings.PORT
 var db = pgp({
     connectionString: settings.DB,
     max: 20,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    ssl: { rejectUnauthorized: false }
 })
 let n = 0
 
@@ -60,6 +58,10 @@ app.get('/vote', (req, res) => {
     db.none(`UPDATE surveys SET ${req.query.response == 'yes'? 'yes = yes + 1' : 'no = no + 1'} WHERE id = ${req.query.id};`)
         .then(()=> res.send('successful'))
         .catch(()=> res.send('error'))
+})
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, `../${settings.staticFiles}/index.html`))
 })
 
 app.listen(PORT, ()=> {
