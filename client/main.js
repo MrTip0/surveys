@@ -3,17 +3,22 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import App from './App.vue'
 
-import MainPage from './components/MainPage.vue'
-import SurveyPage from './components/SurveyPage.vue'
+import MainPage from './views/MainPage.vue'
+import SurveyPage from './views/SurveyPage.vue'
+import SurveyList from './views/SurveyList.vue'
 
 const routes = [
     {
         path: '/survey/:id',
-        component: SurveyPage ,
+        component: SurveyPage,
+    },
+    {
+        path: '/surveys/',
+        component: SurveyList,
     },
     {
         path: '/',
-        component: MainPage ,
+        component: MainPage,
     },
 ]
 

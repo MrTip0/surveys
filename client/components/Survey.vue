@@ -1,15 +1,14 @@
 <template>
-  <h1>Answer to a survey</h1>
   <div class="question">
     <p class="Qtext">{{ values.question }}</p>
     <div class="resultsBox">
       <button class="yes" @click="vote('yes')" :style="yesWidth">
         <p>YES</p>
-        <p> {{ values.yes}} </p>
+        <p>{{ values.yes }}</p>
       </button>
       <button class="no" @click="vote('no')" :style="noWidth">
         <p>NO</p>
-        <p> {{ values.no }} </p>
+        <p>{{ values.no }}</p>
       </button>
     </div>
   </div>
@@ -17,7 +16,9 @@
 
 <script>
 export default {
-  name: "SurveyPage",
+  props: {
+    id: String,
+  },
   data() {
     return {
       values: {
@@ -27,13 +28,11 @@ export default {
       },
       yesWidth: "width: 50%",
       noWidth: "width: 50%",
-      id: 0
     };
   },
   methods: {
     requestSurvey(id) {
       let xhttp = new XMLHttpRequest();
-      console.log(id);
       xhttp.open("GET", `/get-survey?id=${id}`, true);
       xhttp.onload = () => {
         let response = JSON.parse(xhttp.response);
@@ -67,10 +66,9 @@ export default {
       xhttp.send();
     },
   },
-  created(){
-    this.id = this.$route.params.id
-    this.requestSurvey(this.id)
-  }
+  created() {
+    this.requestSurvey(this.id);
+  },
 };
 </script>
 
@@ -100,10 +98,11 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  align-content: stretch;
   background-color: black;
   border: 2px solid black;
-  border-radius: 5px;
-  box-shadow: 2px 2px rgba(66, 61, 61, 0.534);
+  border-radius: 20px;
+  box-shadow: 3px 3px 1px 1px rgba(66, 61, 61, 0.534);
   font-size: xx-large;
 }
 .yes {
@@ -115,6 +114,7 @@ export default {
   flex-direction: column;
   align-items: center;
   font-size: xx-large;
+  border-radius: 20px 0px 0px 20px;
 }
 .no {
   height: 100%;
@@ -125,6 +125,7 @@ export default {
   flex-direction: column;
   align-items: center;
   font-size: xx-large;
+  border-radius: 0px 20px 20px 0px;
 }
 input {
   width: 50vw;

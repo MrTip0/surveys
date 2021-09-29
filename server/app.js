@@ -60,6 +60,10 @@ app.get('/vote', (req, res) => {
         .catch(()=> res.send('error'))
 })
 
+app.get('/lastIndex', (req, res) => {
+    res.send(n.toString())
+})
+
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, `../${settings.staticFiles}/index.html`))
 })

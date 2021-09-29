@@ -3,10 +3,9 @@
 </template>
 
 <script>
-import SendSurvey from './SendSurvey.vue'
+import SendSurvey from '../components/SendSurvey.vue'
 
 export default {
-  name: 'MainPage',
   components: {
     SendSurvey
   }
