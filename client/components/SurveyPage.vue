@@ -3,8 +3,14 @@
   <div class="question">
     <p class="Qtext">{{ values.question }}</p>
     <div class="resultsBox">
-      <button class="yes" @click="vote('yes')" :style="yesWidth">YES</button>
-      <button class="no" @click="vote('no')" :style="noWidth">NO</button>
+      <button class="yes" @click="vote('yes')" :style="yesWidth">
+        <p>YES</p>
+        <p> {{ values.yes}} </p>
+      </button>
+      <button class="no" @click="vote('no')" :style="noWidth">
+        <p>NO</p>
+        <p> {{ values.no }} </p>
+      </button>
     </div>
   </div>
 </template>
@@ -80,16 +86,17 @@ export default {
   border-radius: 5px;
   box-shadow: 2px 2px black;
   background-color: white;
-  min-height: 30px;
+  min-height: 50px;
   text-align: center;
   vertical-align: middle;
   word-break: break-all;
-  width: 50vw;
+  width: 70vw;
   padding-top: 5px;
+  font-size: larger;
 }
 .resultsBox {
-  width: 50vw;
-  height: 50px;
+  width: 70vw;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -97,18 +104,27 @@ export default {
   border: 2px solid black;
   border-radius: 5px;
   box-shadow: 2px 2px rgba(66, 61, 61, 0.534);
+  font-size: xx-large;
 }
 .yes {
   height: 100%;
   background-color: greenyellow;
   border: none;
   min-width: 10% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: xx-large;
 }
 .no {
   height: 100%;
   background-color: red;
   border: none;
   min-width: 10% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: xx-large;
 }
 input {
   width: 50vw;
