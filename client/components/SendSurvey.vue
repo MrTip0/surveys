@@ -42,6 +42,7 @@ form {
     width: 100%;
 }
 input {
+    color: black;
     width: 50vw;
     height: 40px;
     border: none;
