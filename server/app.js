@@ -35,7 +35,7 @@ db.none(initialize)
     })
 
 app.post('/add-survey', (req, res)=> {
-    db.none(`INSERT INTO surveys VALUES ('${req.body.question.replace(/'/g, '\"')}', 0, 0, ${n});`)
+    db.none(`INSERT INTO surveys VALUES ('${req.body.question.replace(/'/g, '"')}', 0, 0, ${n});`)
         .then(()=> {
             n += 1
             res.send((n - 1).toString())
