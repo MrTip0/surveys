@@ -102,11 +102,13 @@ export default {
   height: 100%;
   background-color: greenyellow;
   border: none;
+  min-width: 10% !important;
 }
 .no {
   height: 100%;
   background-color: red;
   border: none;
+  min-width: 10% !important;
 }
 input {
   width: 50vw;
