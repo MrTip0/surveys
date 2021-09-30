@@ -29,6 +29,7 @@ export default {
             xhttp.open('POST', '/add-survey', true)
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
             xhttp.send(`question=${this.question}`)
+            this.question = ""
         }
     }
 }
@@ -59,7 +60,7 @@ input:hover {
     width: 50vw;
 }
 h1 {
-    width: 100%;
+    text-align: center;
     word-break: break-all;
 }
 p {
