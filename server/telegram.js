@@ -39,7 +39,7 @@ bot.on('poll', ctx => {
 bot.command('survey', ctx => {
     let id = ctx.message.text.split(" ")[1]
     if (!isNaN(parseInt(id))) {
-        db.one(`SELECT survey_question FROM surveys WHERE id=${id};`)
+        db.one("SELECT survey_question FROM surveys WHERE id=$1;", [id])
             .then(query => {
                 ctx.telegram.sendPoll(
                     ctx.chat.id, 
