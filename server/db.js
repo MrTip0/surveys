@@ -7,7 +7,7 @@ var db = pgp({
     ssl: { rejectUnauthorized: false }
 })
 
-const initialize = `CREATE TABLE IF NOT EXISTS surveys ( survey_question text, yes integer, no integer, id integer PRIMARY KEY);`
+const initialize = `CREATE TABLE IF NOT EXISTS surveys ( survey_question text, yes integer, no integer, id SERIAL UNIQUE PRIMARY KEY);`
 db.none(initialize)
     .catch(error => {
         console.error(error);

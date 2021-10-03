@@ -1,7 +1,7 @@
 <template>
     <div>
-        <survey v-for="i in show" :id="lastOne - i" :key="i" class="marginThis"></survey>
-        <button @click="showMore()" v-if="show < lastOne">Show more</button>
+        <survey v-for="(id, i) in show" :id="id" :key="i" class="marginThis"></survey>
+        <button @click="showMore()" v-if="idS.length > 0">Show more</button>
     </div>
 </template>
 
@@ -10,8 +10,8 @@ import Survey from "../components/Survey.vue";
 export default {
     data (){
         return {
-            lastOne: 0,
-            show: 0,
+            idS: [],
+            show: [],
         }
     },
     components: {
@@ -19,22 +19,21 @@ export default {
     },
     methods: {
         showMore() {
-            if ((this.show + 4) < this.lastOne) {
-                this.show += 4
-            } else {
-                this.show = this.lastOne
+            for(let i = 0; i < 4 && this.idS.length > 0; i++) {
+                this.show.push(this.idS.pop())
             }
         }
     },
     created() {
-        fetch('/lastIndex')
-            .then(response => {
-                response.text()
-                    .then(responseText => {
-                        this.lastOne = parseInt(responseText)
-                        this.showMore()
-                        })
-                })
+        fetch('/list')
+            .then(response => response.json())
+            .then(responseJson => {
+                responseJson.forEach(element => {
+                    this.idS.push(element.id)
+                });
+                this.showMore()
+            })
+               
     }
 }
 </script>
