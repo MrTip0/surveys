@@ -4,7 +4,7 @@ const pgp = require('pg-promise')()
 var db = pgp({
     connectionString: settings.DB,
     max: 20,
-    ssl: { rejectUnauthorized: false }
+    //ssl: { rejectUnauthorized: false }
 })
 
 const initialize = `CREATE TABLE IF NOT EXISTS surveys ( survey_question text, yes integer, no integer, id SERIAL UNIQUE PRIMARY KEY);`

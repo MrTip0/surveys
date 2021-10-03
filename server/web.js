@@ -39,7 +39,7 @@ app.get('/vote', (req, res) => {
 })
 
 app.get('/list', (req, res) => {
-    db.any('SELECT id FROM surveys;')
+    db.any('SELECT id FROM surveys ORDER BY id ASC;')
         .then(result => {
             res.send(json3.stringify(result))
         })

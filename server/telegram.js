@@ -66,9 +66,9 @@ bot.command('list', ctx => {
         let r = parseInt(resM[1])
         results = (isNaN(r) ? 5 : r)
     }
-    db.any('SELECT survey_question, id FROM surveys ORDER BY id LIMIT $1;', [results])
+    db.any('SELECT survey_question, id FROM surveys ORDER BY id DESC LIMIT $1;', [results])
         .then(data => {
-            for(let i = data.length - 1; i >= 0; i--) {
+            for(let i = 0; i < data.length; i++) {
                 const actData = data[i]
                 ctx.telegram.sendPoll(
                     ctx.chat.id, 
