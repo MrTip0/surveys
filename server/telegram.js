@@ -25,7 +25,7 @@ const add = (pidd, idd) => {
 }
 
 bot.start(ctx => ctx.reply('Hey welcome to TipettinoSurveyBot, here you can answer to the Surveys or create a new one'))
-bot.help(ctx => ctx.reply('Send me:\n"/survey {id}" to answer a survey\n"/list {max number of survey(default 5)}" to get a list of survey\n/ask {message} to create a new survey'))
+bot.help(ctx => ctx.reply('Send me:\n/survey {id} to answer a survey\n/list {max number of survey(default 5)} to get a list of survey\n/ask {message} to create a new survey'))
 
 bot.on('poll', ctx => {
     let r = ctx.poll.options
