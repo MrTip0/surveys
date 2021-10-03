@@ -1,6 +1,6 @@
 {
   "name": "surveys",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A simple survey app",
   "main": "server/app.js",
   "engines": {
