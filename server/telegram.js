@@ -1,8 +1,8 @@
-const { Telegraf } = require('telegraf')
+const { Bot } = require('grammy')
 const settings = require('./settings')
 const db = require('./db')
 
-const bot = new Telegraf(settings.BOT_TOKEN)
+const bot = new Bot(settings.BOT_TOKEN)
 
 let v = []
 
@@ -24,8 +24,16 @@ const add = (pidd, idd) => {
     })
 }
 
-bot.start(ctx => ctx.reply('Hey welcome to TipettinoSurveyBot, here you can answer to the Surveys or create a new one'))
-bot.help(ctx => ctx.reply('Send me:\n/survey {id} to answer a survey\n/list {max number of survey(default 5)} to get a list of survey\n/ask {message} to create a new survey'))
+bot.api.setMyCommands([
+    { command: "start", description: "Starts the bot" },
+    { command: "help", description: "Show help text" },
+    { command: "ask", description: "Open a survey" },
+    { command: "list", description: "List some surveys" },
+    { command: "survey", description: "Get a specific survey" },
+]);
+
+bot.command('start', ctx => ctx.reply('Hey welcome to TipettinoSurveyBot, here you can answer to the Surveys or create a new one'))
+bot.command('help', ctx => ctx.reply('Send me:\n/survey {id} to answer a survey\n/list {max number of survey(default 5)} to get a list of survey\n/ask {message} to create a new survey'))
 
 bot.on('poll', ctx => {
     let r = ctx.poll.options
@@ -41,8 +49,7 @@ bot.command('survey', ctx => {
     if (!isNaN(parseInt(id))) {
         db.one("SELECT survey_question FROM surveys WHERE id=$1;", [id])
             .then(query => {
-                ctx.telegram.sendPoll(
-                    ctx.chat.id, 
+                ctx.replyWithPoll(
                     query.survey_question, 
                     ["Yes", "No"], 
                     {
@@ -70,13 +77,12 @@ bot.command('list', ctx => {
         .then(data => {
             for(let i = 0; i < data.length; i++) {
                 const actData = data[i]
-                ctx.telegram.sendPoll(
-                    ctx.chat.id, 
+                ctx.replyWithPoll(
                     actData.survey_question, 
-                    ["Yes", "No"], 
+                    ['Yes', 'No'],
                     {
                         allows_multiple_answers: false,
-                        is_anonymous: true
+                        is_anonymous: true,
                     })
                     .then(ret => {
                         add(ret.poll.id, actData.id)
@@ -87,10 +93,10 @@ bot.command('list', ctx => {
 })
 
 bot.command('ask', ctx => {
-    let space = ctx.message.text.indexOf(' ')
-    if (space == -1) {
-        ctx.reply("Send a question")
+    if (ctx.message.text.indexOf(' ') == -1 && ctx.message.text.indexOf('\n') == -1) {
+        ctx.reply("Send a question after the command")
     } else {
+        let space = (ctx.message.text.indexOf(' ') != -1 ? ctx.message.text.indexOf(' ') : ctx.message.text.indexOf('\n'))
         var question = ctx.message.text.substring(space + 1)
         db.one("INSERT INTO surveys VALUES ($1, 0, 0) RETURNING id;", [question])
             .then((data)=> {

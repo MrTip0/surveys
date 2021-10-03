@@ -8,7 +8,7 @@ app.listen(PORT, ()=> {
     console.log(`Listening on port ${PORT}`)
 })
 
-bot.launch()
+bot.start()
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
